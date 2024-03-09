@@ -1,0 +1,49 @@
+{% extends 'olx/layout.html' %}
+
+{% block title %}
+    OLX
+{% endblock title %}
+
+{% block content %}
+    <h2>Welcome</h2>
+    
+    <form method="GET" id="filterForm">
+        <select name="type" id="type">
+            <option value="">All</option>
+            {% for item in items %}
+                <option value="{{ item.type }}">{{ item.type}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="brand" id="brand">
+            <option value="">All</option>
+            {% for item in items %}
+                <option value="{{ item.brand }}">{{ item.brand }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+    
+    {% if items %}
+        {% for item in items %}
+            <a href="{% url 'detail' item.id %}">
+            <div class="filter-info">
+                <div class="image">
+                    <img src="{{ item.image }}" alt="image">
+                </div>
+                <div class="content_container">
+                    <p><strong>Type:</strong> {{ item.type }}</p>
+                    <p><strong>Name:</strong> {{ item.name }}</p>
+                    <p><strong>Model:</strong> {{ item.model }}</p>
+                    <p><strong>Brand:</strong> {{ item.brand }}</p>
+                    <p><strong>Price:</strong> ${{ item.price }}</p>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        no
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'olx/layout.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    {% if item %}
+            <div class="filter-info" style="min-width: 60vw; min-height: 50vh">
+                <div class="image">
+                    <img src="{{ item.image }}" alt="image">
+                </div>
+                <div class="content_container">
+                    <p><strong>Type:</strong> {{ item.type }}</p>
+                    <p><strong>Name:</strong> {{ item.name }}</p>
+                    <p><strong>Model:</strong> {{ item.model }}</p>
+                    <p><strong>Brand:</strong> {{ item.brand }}</p>
+                    <p><strong>Year:</strong> {{ item.year }}</p>
+                    <p><strong>Price:</strong> ${{ item.price }}</p>
+                    <p><strong>Description:</strong> {{ item.description }}</p>
+                </div>
+            </div>
+    {% else %}
+        no
+    {% endif %}
+{% endblock %}
